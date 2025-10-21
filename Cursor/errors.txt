@@ -1,0 +1,15 @@
+Build started at 0:30...
+1>------ Build started: Project: dataAcq, Configuration: Debug Win32 ------
+1>StdAfx.cpp
+1>dataAcq.cpp
+1>MainFrm.cpp
+1>dataAcqDoc.cpp
+1>dataAcqView.cpp
+1>Mailbox.cpp
+1>CdbWaveDocStub.cpp
+1>Generating Code...
+1>CVTRES : fatal error CVT1100: duplicate resource.  type:BITMAP, name:128, language:0x0409
+1>LINK : fatal error LNK1123: failure during conversion to COFF: file invalid or corrupt
+1>Done building project "dataAcq.vcxproj" -- FAILED.
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+========== Build completed at 0:30 and took 01.803 seconds ==========

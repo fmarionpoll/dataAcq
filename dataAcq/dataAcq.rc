@@ -1,4 +1,6 @@
+#include "resource_dbwave_src.h"
 #include "resource.h"
+#include <afxres.h>
 
 IDD_FORMVIEW DIALOGEX 0, 0, 300, 200
 STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE | WS_TABSTOP
@@ -7,5 +9,16 @@ BEGIN
 END
 
 IDR_MAINFRAME ICON "res\\dataAcq.ico"
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit", ID_APP_EXIT
+    END
+END
+
+
+#include "dbWave_src.rc"
 
 

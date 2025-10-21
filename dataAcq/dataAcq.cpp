@@ -11,6 +11,7 @@
 CdataAcqApp theApp;
 
 BEGIN_MESSAGE_MAP(CdataAcqApp, CWinApp)
+    ON_COMMAND(ID_APP_EXIT, CWinApp::OnAppExit)
 END_MESSAGE_MAP()
 
 BOOL CdataAcqApp::InitInstance()
@@ -18,22 +19,25 @@ BOOL CdataAcqApp::InitInstance()
     CWinApp::InitInstance();
     AfxEnableControlContainer();
 
-    // Create main frame
-    auto* pFrame = new CMainFrame;
-    if (!pFrame->LoadFrame(IDR_MAINFRAME))
+    // Register document template (SDI)
+    CSingleDocTemplate* pDocTemplate;
+    pDocTemplate = new CSingleDocTemplate(
+        IDR_MAINFRAME,
+        RUNTIME_CLASS(CdataAcqDoc),
+        RUNTIME_CLASS(CMainFrame),
+        RUNTIME_CLASS(CdataAcqView));
+    if (!pDocTemplate)
         return FALSE;
-    m_pMainWnd = pFrame;
+    AddDocTemplate(pDocTemplate);
 
-    // Create a document and view
-    CCreateContext ctx{};
-    ctx.m_pNewViewClass = RUNTIME_CLASS(CdataAcqView);
-    ctx.m_pNewDocTemplate = nullptr;
-    ctx.m_pLastView = nullptr;
-    ctx.m_pCurrentDoc = (CDocument*)RUNTIME_CLASS(CdataAcqDoc)->CreateObject();
-    if (!ctx.m_pCurrentDoc)
+    // Create main window and first document
+    CCommandLineInfo cmdInfo;
+    ParseCommandLine(cmdInfo);
+    if (!ProcessShellCommand(cmdInfo))
         return FALSE;
-    pFrame->InitialUpdateFrame(ctx.m_pCurrentDoc, TRUE);
 
+    m_pMainWnd->ShowWindow(SW_SHOW);
+    m_pMainWnd->UpdateWindow();
     return TRUE;
 }
 
